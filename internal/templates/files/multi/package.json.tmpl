@@ -1,0 +1,34 @@
+{
+  "name": "{{ .Identifier }}",
+  "displayName": "{{ .Name }}",
+  "description": "{{ .Description }}",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:{{ .Identifier }}.hello",
+    "onCommand:{{ .Identifier }}.goodbye"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "{{ .Identifier }}.hello",
+        "title": "Say Hello"
+      },
+      {
+        "command": "{{ .Identifier }}.goodbye",
+        "title": "Say Goodbye"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/vscode": "^1.90.0"
+  }
+}

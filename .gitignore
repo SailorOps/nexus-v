@@ -1,0 +1,27 @@
+# Build output
+nexus-v
+nexus-v.exe
+*.exe
+*.out
+*.bin
+
+# Go
+*.test
+*.prof
+vendor/
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local

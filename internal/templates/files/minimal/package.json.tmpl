@@ -1,0 +1,29 @@
+{
+  "name": "{{ .Identifier }}",
+  "displayName": "{{ .Name }}",
+  "description": "{{ .Description }}",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:{{ .CommandName }}"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "{{ .CommandName }}",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/vscode": "^1.90.0"
+  }
+}

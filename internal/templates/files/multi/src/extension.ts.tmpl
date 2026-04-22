@@ -1,0 +1,10 @@
+import * as vscode from 'vscode';
+import { registerHello } from './commands/hello';
+import { registerGoodbye } from './commands/goodbye';
+
+export function activate(context: vscode.ExtensionContext) {
+  registerHello(context);
+  registerGoodbye(context);
+}
+
+export function deactivate() {}
