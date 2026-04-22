@@ -11,7 +11,7 @@ if [[ "$(uname -m)" == "arm64" || "$(uname -m)" == "aarch64" ]]; then
 fi
 
 # Download binary
-URL="https://github.com/geriatric-sailor/nexus-v/releases/latest/download/nexus-v-${OS}-${ARCH}"
+URL="https://github.com/billy-kidd-dev/nexus-v/releases/latest/download/nexus-v-${OS}-${ARCH}"
 curl -L "$URL" -o nexus-v
 
 # Make executable and move to bin

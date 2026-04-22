@@ -12,7 +12,7 @@ import (
 	"nexus-v/internal/version"
 )
 
-const repo = "geriatric-sailor/nexus-v"
+const repo = "billy-kidd-dev/nexus-v"
 
 type release struct {
 	TagName string `json:"tag_name"`
