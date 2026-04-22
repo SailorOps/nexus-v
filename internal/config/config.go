@@ -1,51 +1,77 @@
 package config
 
 import (
-	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
+
+	"gopkg.in/yaml.v3"
 )
 
+type DefaultsConfig struct {
+	Publisher string `yaml:"publisher"`
+	Variant   string `yaml:"variant"`
+	Git       bool   `yaml:"git"`
+	License   string `yaml:"license"`
+}
+
 type TelemetryConfig struct {
-	Session bool `json:"session"`
-	Local   bool `json:"local"`
-	Project bool `json:"project"`
+	Enabled bool `yaml:"enabled"`
+	Session bool `yaml:"session"`
+	Local   bool `yaml:"local"`
+	Project bool `yaml:"project"`
 }
 
 type HookConfig struct {
-	Post []string `json:"post"`
+	Pre  []string `yaml:"pre_scaffold"`
+	Post []string `yaml:"post_scaffold"`
 }
 
 type Config struct {
-	Name        string          `json:"name"`
-	Identifier  string          `json:"identifier"`
-	Description string          `json:"description"`
-	Template    string          `json:"template"`
-	Telemetry   TelemetryConfig `json:"telemetry"`
-	Hooks       HookConfig      `json:"hooks"`
+	Defaults  DefaultsConfig  `yaml:"defaults"`
+	Telemetry TelemetryConfig `yaml:"telemetry"`
+	Hooks     HookConfig      `yaml:"hooks"`
 }
 
 func LoadConfig(targetDir string) (Config, error) {
 	var cfg Config
 
-	// Defaults
-	cfg.Telemetry.Session = true
-	cfg.Telemetry.Local = false
-	cfg.Telemetry.Project = false
+	// Default values
+	cfg.Defaults.Git = true
+	cfg.Defaults.License = "MIT"
+	cfg.Defaults.Variant = "command"
+	cfg.Telemetry.Enabled = false // Off by default per README
+	cfg.Telemetry.Session = true  // Internal default if enabled
 
-	// User-level config: ~/.nexusv.json
+	// User-level config: ~/.nexusvrc.yaml
 	home, err := os.UserHomeDir()
 	if err == nil {
-		userCfg := filepath.Join(home, ".nexusv.json")
+		userCfg := filepath.Join(home, ".nexusvrc.yaml")
 		if data, err := os.ReadFile(userCfg); err == nil {
-			_ = json.Unmarshal(data, &cfg)
+			_ = yaml.Unmarshal(data, &cfg)
 		}
 	}
 
-	// Project-level config: <targetDir>/nexusv.json
-	projectCfg := filepath.Join(targetDir, "nexusv.json")
+	// Project-level config: <targetDir>/.nexusvrc.yaml
+	projectCfg := filepath.Join(targetDir, ".nexusvrc.yaml")
 	if data, err := os.ReadFile(projectCfg); err == nil {
-		_ = json.Unmarshal(data, &cfg)
+		_ = yaml.Unmarshal(data, &cfg)
+	}
+
+	// Environment variables override
+	if pub := os.Getenv("NEXUSV_PUBLISHER"); pub != "" {
+		cfg.Defaults.Publisher = pub
+	}
+	if variant := os.Getenv("NEXUSV_DEFAULT_VARIANT"); variant != "" {
+		cfg.Defaults.Variant = variant
+	}
+
+	telemetryEnv := strings.ToLower(os.Getenv("NEXUSV_TELEMETRY"))
+	doNotTrack := os.Getenv("DO_NOT_TRACK")
+	if doNotTrack == "1" || doNotTrack == "true" || telemetryEnv == "off" || telemetryEnv == "false" || telemetryEnv == "0" {
+		cfg.Telemetry.Enabled = false
+	} else if telemetryEnv == "on" || telemetryEnv == "true" || telemetryEnv == "1" {
+		cfg.Telemetry.Enabled = true
 	}
 
 	return cfg, nil

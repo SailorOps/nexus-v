@@ -1,0 +1,20 @@
+{
+  "name": "{{ .Identifier }}",
+  "displayName": "{{ .Name }}",
+  "publisher": "{{ .Publisher }}",
+  "description": "{{ .Description }}",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [{
+      "label": "{{ .Name }}",
+      "uiTheme": "vs-dark",
+      "path": "./themes/{{ .Identifier }}-color-theme.json"
+    }]
+  }
+}

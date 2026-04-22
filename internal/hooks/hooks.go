@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func RunPostHooks(dir string, commands []string) error {
+func RunHooks(dir string, commands []string) error {
 	for _, cmdStr := range commands {
 		parts := strings.Fields(cmdStr)
 		if len(parts) == 0 {

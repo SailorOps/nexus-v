@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "{{ .Name }}",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.{{ .Identifier }}",
+				"match": "\\b(if|else|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.{{ .Identifier }}",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.{{ .Identifier }}",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.{{ .Identifier }}"
+}

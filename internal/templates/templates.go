@@ -4,21 +4,25 @@ import (
 	"embed"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
+	"text/template"
 )
 
 //go:embed files/**
 var templateFS embed.FS
 
 type Context struct {
-	Name        string
-	Identifier  string
-	Description string
-	CommandName string
-	Template    string
-	Force       bool
-	DryRun      bool
+	Name              string
+	Identifier        string
+	Description       string
+	Publisher         string
+	CommandName       string
+	Template          string
+	CustomTemplateDir string
+	Force             bool
+	DryRun            bool
 }
 
 // ListTemplates returns all template variants in files/
@@ -38,59 +42,68 @@ func ListTemplates() ([]string, error) {
 }
 
 func GenerateProject(ctx Context, targetDir string) error {
-	if ctx.Template == "" {
+	if ctx.Template == "" && ctx.CustomTemplateDir == "" {
 		ctx.Template = "default"
 	}
 
-	searchRoots := []string{
-		filepath.Join("files", ctx.Template),
-		filepath.Join("files", "default"),
-	}
-
-	if _, err := templateFS.ReadDir(searchRoots[0]); err != nil {
-		return fmt.Errorf("unknown template variant: %s", ctx.Template)
+	if !ctx.DryRun {
+		if err := os.MkdirAll(targetDir, 0o755); err != nil {
+			return fmt.Errorf("failed to create target directory: %w", err)
+		}
 	}
 
 	seen := map[string]bool{}
 
-	for _, root := range searchRoots {
-		err := fsWalk(root, func(path string, isDir bool) error {
-			rel := strings.TrimPrefix(path, root)
-			rel = strings.TrimPrefix(rel, string(os.PathSeparator))
+	type source struct {
+		path    string
+		isLocal bool
+	}
 
-			if seen[rel] {
-				return nil
-			}
-			seen[rel] = true
+	var sources []source
+	if ctx.CustomTemplateDir != "" {
+		sources = append(sources, source{path: ctx.CustomTemplateDir, isLocal: true})
+	}
+	if ctx.Template != "" && ctx.Template != "default" {
+		sources = append(sources, source{path: path.Join("files", ctx.Template), isLocal: false})
+	}
+	sources = append(sources, source{path: path.Join("files", "default"), isLocal: false})
 
-			outPath := filepath.Join(targetDir, rel)
+	for _, src := range sources {
+		if src.path == "" {
+			continue
+		}
 
-			if isDir {
-				if ctx.DryRun {
-					fmt.Println("[dir]  ", outPath)
+		var err error
+		if src.isLocal {
+			err = filepath.WalkDir(src.path, func(p string, d os.DirEntry, err error) error {
+				if err != nil {
+					return err
+				}
+				if p == src.path {
 					return nil
 				}
-				return os.MkdirAll(outPath, 0o755)
-			}
 
-			outPath = strings.TrimSuffix(outPath, ".tmpl")
+				rel, _ := filepath.Rel(src.path, p)
+				rel = filepath.ToSlash(rel)
 
-			if ctx.DryRun {
-				fmt.Println("[file] ", outPath)
-				return nil
-			}
-
-			if !ctx.Force {
-				if _, err := os.Stat(outPath); err == nil {
-					return fmt.Errorf(
-						"refusing to overwrite existing file: %s (use --force to override)",
-						outPath,
-					)
+				return processItem(rel, p, d.IsDir(), true, targetDir, ctx, seen)
+			})
+		} else {
+			// Check if embedded path exists
+			if _, err := templateFS.ReadDir(src.path); err != nil {
+				if ctx.Template != "" && src.path == path.Join("files", ctx.Template) {
+					return fmt.Errorf("unknown template variant: %s", ctx.Template)
 				}
+				continue
 			}
 
-			return renderFile(path, outPath, ctx)
-		})
+			err = fsWalk(src.path, func(p string, isDir bool) error {
+				rel := strings.TrimPrefix(p, src.path)
+				rel = strings.TrimPrefix(rel, "/")
+
+				return processItem(rel, p, isDir, false, targetDir, ctx, seen)
+			})
+		}
 
 		if err != nil {
 			return err
@@ -98,4 +111,53 @@ func GenerateProject(ctx Context, targetDir string) error {
 	}
 
 	return nil
+}
+
+func processItem(rel, srcPath string, isDir bool, isLocal bool, targetDir string, ctx Context, seen map[string]bool) error {
+	if seen[rel] {
+		return nil
+	}
+	seen[rel] = true
+
+	outPath := filepath.Join(targetDir, filepath.FromSlash(rel))
+
+	// Support template rendering in filenames
+	if strings.Contains(outPath, "{{") {
+		t, err := template.New("path").Parse(outPath)
+		if err == nil {
+			var buf strings.Builder
+			if err := t.Execute(&buf, ctx); err == nil {
+				outPath = buf.String()
+			}
+		}
+	}
+
+	if isDir {
+		if ctx.DryRun {
+			fmt.Println("[dir]  ", outPath)
+			return nil
+		}
+		return os.MkdirAll(outPath, 0o755)
+	}
+
+	outPath = strings.TrimSuffix(outPath, ".tmpl")
+
+	if ctx.DryRun {
+		fmt.Println("[file] ", outPath)
+		return nil
+	}
+
+	if !ctx.Force {
+		if _, err := os.Stat(outPath); err == nil {
+			return fmt.Errorf(
+				"refusing to overwrite existing file: %s (use --force to override)",
+				outPath,
+			)
+		}
+	}
+
+	if isLocal {
+		return renderLocalFile(srcPath, outPath, ctx)
+	}
+	return renderEmbeddedFile(srcPath, outPath, ctx)
 }

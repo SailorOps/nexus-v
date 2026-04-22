@@ -32,5 +32,5 @@ func (s *Spinner) Start(msg string) {
 
 func (s *Spinner) Stop() {
 	close(s.stop)
-	fmt.Print("\r")
+	fmt.Print("\r\033[K")
 }
