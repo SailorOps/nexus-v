@@ -25,3 +25,10 @@ Desktop.ini
 # Environment
 .env
 .env.local
+
+# Test artifacts
+/empty-repo/
+/smoke-test-dir/
+/temp-template/
+/dist/
+/test-scaffold/
