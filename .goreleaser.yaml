@@ -44,3 +44,26 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+brews:
+  - name: nexus-v
+    repository:
+      owner: billy-kidd-dev
+      name: homebrew-nexusv
+    directory: Formula
+    homepage: "https://github.com/billy-kidd-dev/nexus-v"
+    description: "A modern, zero-install VS Code extension scaffolder."
+    license: "MIT"
+    install: |
+      bin.install "nexus-v"
+
+scoops:
+  - name: nexus-v
+    repository:
+      owner: billy-kidd-dev
+      name: scoop-bucket
+    homepage: "https://github.com/billy-kidd-dev/nexus-v"
+    description: "A modern, zero-install VS Code extension scaffolder."
+    license: "MIT"
+
+
