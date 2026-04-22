@@ -30,5 +30,7 @@ Desktop.ini
 /empty-repo/
 /smoke-test-dir/
 /temp-template/
+/dist-test-dir/
+/test-run/
 /dist/
 /test-scaffold/
