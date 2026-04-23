@@ -64,10 +64,10 @@ changelog:
 brews:
   - name: nexus-v
     repository:
-      owner: billy-kidd-dev
+      owner: SailorOps
       name: homebrew-nexusv
     directory: Formula
-    homepage: "https://github.com/billy-kidd-dev/nexus-v"
+    homepage: "https://github.com/SailorOps/nexus-v"
     description: "A modern, zero-install VS Code extension scaffolder."
     license: "MIT"
     install: |
@@ -76,28 +76,28 @@ brews:
 scoops:
   - name: nexus-v
     repository:
-      owner: billy-kidd-dev
+      owner: SailorOps
       name: scoop-bucket
-    homepage: "https://github.com/billy-kidd-dev/nexus-v"
+    homepage: "https://github.com/SailorOps/nexus-v"
     description: "A modern, zero-install VS Code extension scaffolder."
     license: "MIT"
 
 winget:
   - name: nexus-v
-    publisher: Billy Kidd
-    package_identifier: BillyKidd.NexusV
+    publisher: SailorOps
+    package_identifier: SailorOps.NexusV
     short_description: "A modern, zero-install VS Code extension scaffolder."
     description: "NEXUS-V replaces the legacy Yeoman generator with a single static binary that produces clean VS Code extension projects."
     license: MIT
-    homepage: "https://github.com/billy-kidd-dev/nexus-v"
-    publisher_url: "https://github.com/billy-kidd-dev"
+    homepage: "https://github.com/SailorOps/nexus-v"
+    publisher_url: "https://github.com/SailorOps"
     tags:
       - vscode
       - extension
       - yeoman
       - scaffolder
     repository:
-      owner: billy-kidd-dev
+      owner: SailorOps
       name: winget-nexusv
     # Only use the Windows amd64 archive
     ids:

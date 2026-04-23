@@ -56,24 +56,24 @@ The VS Code extension ecosystem depends heavily on Yeoman — a scaffolding tool
 
 ### Homebrew (macOS / Linux)
 ```bash
-brew tap billy-kidd-dev/nexusv
+brew tap SailorOps/nexusv
 brew install nexus-v
 ```
 
 ### Scoop (Windows)
 ```powershell
-scoop bucket add nexusv https://github.com/billy-kidd-dev/scoop-bucket
+scoop bucket add nexusv https://github.com/SailorOps/scoop-bucket
 scoop install nexus-v
 ```
 
 ### Winget (Windows)
 ```powershell
-winget install BillyKidd.NexusV
+winget install SailorOps.NexusV
 ```
 
 ### One-liner (Unix)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/billy-kidd-dev/nexus-v/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SailorOps/nexus-v/main/install.sh | bash
 ```
 
 ---
@@ -244,4 +244,4 @@ hooks:
 
 ## License
 
-MIT © [Billy Kidd](https://github.com/billy-kidd-dev)
+MIT © [SailorOps](https://github.com/SailorOps)
