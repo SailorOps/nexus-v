@@ -86,9 +86,6 @@ scoops:
     license: "MIT"
     ids:
       - archive
-    goarch:
-      - amd64
-      - arm64
 
 winget:
   - name: nexus-v
@@ -107,9 +104,6 @@ winget:
     repository:
       owner: SailorOps
       name: winget-nexusv
-    goarch:
-      - amd64
-      - arm64
     ids:
       - archive
 
