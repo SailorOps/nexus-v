@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2026-04-22
+### Changed
+- Transferred repository and all distribution channels to the **SailorOps** organization.
+- Updated internal update logic, installation scripts, and package manager manifests to point to the new organization.
+- Rebranded Winget publisher and package identifier to `SailorOps`.
+
 ## [0.2.1] - 2026-04-22
 ### Fixed
 - Cleaned up template "bloat": variants like `theme` and `language` no longer include unwanted `src/` boilerplate from the default template.
