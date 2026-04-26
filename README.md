@@ -1,76 +1,58 @@
-![Still Systems Banner](https://raw.githubusercontent.com/stillsystems/.github/main/profile/banner.png)
-
-# ⚓ NEXUS-V
+# <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/stillsystems/.github/main/brand/logo.png"><img alt="Still Systems" src="https://raw.githubusercontent.com/stillsystems/.github/main/brand/logo.png" width="32" height="32"></picture> NEXUS-V
 
 **Modern developer tooling engineered for real-world conditions.**  
 Zero-install. Dependency-light. Predictable.
 
----
+[![CI](https://github.com/stillsystems/nexus-v/actions/workflows/ci.yml/badge.svg)](https://github.com/stillsystems/nexus-v/actions)
+[![License](https://img.shields.io/github/license/stillsystems/nexus-v?style=flat-square&color=111827)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/stillsystems/nexus-v?style=flat-square&color=111827)](https://github.com/stillsystems/nexus-v/releases)
 
-## 🧭 Philosophy
+## Overview
 
-NEXUS-V is the flagship project of the **Still Systems** ecosystem and embodies our core principles:
+NEXUS-V is the flagship project of the **Still Systems** ecosystem. It is a lightweight, high-utility scaffolding engine designed to provide software that "just works"—allowing you to focus on your build rather than troubleshooting your tools.
+
+It embodies our core principles:
 - 🛡️ **Clarity over cleverness** — predictable behavior, no magic.
 - 📦 **Portability over complexity** — single static binaries, zero runtime dependencies.
-- ⚓ **Durability over trends** — built for long-term maintainability with minimal dependencies.
+- ⚓ **Durability over trends** — built for long-term maintainability.
 
----
+## Installation / Quickstart
 
-## 🚀 Features
-
-| Feature | Description |
-|---|---|
-| **Zero-Install** | One executable, zero runtime dependencies — no Node.js required to run |
-| **Interactive TUI** | Beautiful terminal UI for choosing template variants |
-| **Remote Plugins** | Scaffold directly from any GitHub repository with pinning support |
-| **Offline-First** | All core templates are bundled; no internet required for local use |
-| **Doctor Command** | Diagnostic tool to verify your environment health |
-| **Multi-Platform** | Native support for Windows, macOS, and Linux |
-| **Secure Hooks** | Pre- and post-generation hooks with safety-first warnings |
-
----
-
-## 📦 Installation
-
-### **Homebrew (macOS / Linux)**
+### Homebrew (macOS / Linux)
 ```bash
 brew tap stillsystems/nexusv
 brew install nexus-v
 ```
 
-### **Scoop (Windows)**
+### Scoop (Windows)
 ```powershell
 scoop bucket add stillsystems https://github.com/stillsystems/scoop-bucket
 scoop install nexus-v
 ```
 
-### **Winget (Windows)**
+### WinGet (Windows)
 ```powershell
 winget install stillsystems.nexusv
 ```
 
----
+## Usage
 
-## 🛠️ Usage
-
-### **Interactive Mode**
+### Interactive Mode
 ```bash
 nexus-v init  # or simply: nexus-v i
 ```
 
-### **Remote Templates**
+### Remote Templates
 ```bash
 nexus-v init --template-dir https://github.com/user/my-template
 ```
 
-### **Check Health**
+### Check Health
 ```bash
 nexus-v doctor
 ```
 
----
-
-## 🔧 Command Options (`init`)
+## Configuration
 
 | Flag | Description |
 |---|---|
@@ -82,13 +64,15 @@ nexus-v doctor
 | `--install` | Automatically run `npm install` after scaffold |
 | `--git` | Automatically run `git init` after scaffold |
 
+## Contributing
+
+Please refer to our [Global Contributing Guidelines](https://github.com/stillsystems/.github/blob/main/CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License.
+
+Documentation • [Issues](https://github.com/stillsystems/nexus-v/issues) • [Support](https://github.com/stillsystems/.github/blob/main/SUPPORT.md)
+
 ---
-
-## 🤝 Contributing
-
-We welcome contributions! Please see the [Still Systems Contribution Rules](https://github.com/stillsystems/.github/blob/main/brand/governance/contribution-rules.md) for our standards on clarity and dependency management.
-
----
-
-⚓ **Still Systems** — Tools engineered for real-world conditions.  
-MIT © [Still Systems](https://github.com/stillsystems)
+⚓ **Still Systems** — Tools engineered for real-world conditions.
