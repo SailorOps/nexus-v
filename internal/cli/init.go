@@ -236,10 +236,13 @@ func resolveInteractive(ctx *templates.Context) error {
 	if ctx.Template == "" && ctx.CustomTemplateDir == "" && answers.Variant != "" {
 		ctx.Template = answers.Variant
 	}
+	if ctx.License == "" {
+		ctx.License = answers.License
+	}
 
 	// Update CommandName if Identifier changed
 	if ctx.CommandName == ".helloWorld" || ctx.CommandName == "" {
-		ctx.CommandName = ctx.Identifier + ".helloWorld"
+		ctx.CommandName = answers.CommandName
 	}
 
 	return nil

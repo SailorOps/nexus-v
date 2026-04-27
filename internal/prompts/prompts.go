@@ -17,6 +17,7 @@ type Answers struct {
 	Publisher   string
 	Variant     string
 	CommandName string
+	License     string
 }
 
 func AskQuestions() (*Answers, error) {
@@ -38,6 +39,7 @@ func AskQuestions() (*Answers, error) {
 	}
 
 	commandName := ask(reader, "Command name", identifier+".helloWorld")
+	license := ask(reader, "License", "MIT")
 
 	return &Answers{
 		Name:        name,
@@ -46,6 +48,7 @@ func AskQuestions() (*Answers, error) {
 		Publisher:   publisher,
 		Variant:     variant,
 		CommandName: commandName,
+		License:     license,
 	}, nil
 }
 

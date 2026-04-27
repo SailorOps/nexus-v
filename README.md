@@ -1,11 +1,13 @@
 # <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/stillsystems/.github/main/brand/logo.png"><img alt="Still Systems" src="https://raw.githubusercontent.com/stillsystems/.github/main/brand/logo.png" width="32" height="32"></picture> NEXUS-V
 
 **Modern developer tooling engineered for real-world conditions.**  
-Zero-install. Dependency-light. Predictable.
+Zero runtime dependencies. Dependency-light. Predictable.
 
 [![CI](https://github.com/stillsystems/nexus-v/actions/workflows/ci.yml/badge.svg)](https://github.com/stillsystems/nexus-v/actions)
 [![License](https://img.shields.io/github/license/stillsystems/nexus-v?style=flat-square&color=111827)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/stillsystems/nexus-v?style=flat-square&color=111827)](https://github.com/stillsystems/nexus-v/releases)
+
+![NEXUS-V Launch Demo](https://vhs.charm.sh/vhs-DEqFCb9FeLANXwRzxNFqw.gif)
 
 ## Overview
 
