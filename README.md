@@ -3,7 +3,7 @@
 **Modern developer tooling engineered for real-world conditions.**  
 Zero runtime dependencies. Dependency-light. Predictable.
 
-[![CI](https://github.com/stillsystems/nexus-v/actions/workflows/ci.yml/badge.svg)](https://github.com/stillsystems/nexus-v/actions)
+[![CI](https://github.com/stillsystems/nexus-v/actions/workflows/test.yml/badge.svg)](https://github.com/stillsystems/nexus-v/actions)
 [![License](https://img.shields.io/github/license/stillsystems/nexus-v?style=flat-square&color=111827)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/stillsystems/nexus-v?style=flat-square&color=111827)](https://github.com/stillsystems/nexus-v/releases)
 
@@ -16,7 +16,7 @@ NEXUS-V is the flagship project of the **Still Systems** ecosystem. It is a ligh
 It embodies our core principles:
 - 🛡️ **Clarity over cleverness** — predictable behavior, no magic.
 - 📦 **Portability over complexity** — single static binaries, zero runtime dependencies.
-- ⚓ **Durability over trends** — built for long-term maintainability.
+- 🧱 **Durability over trends** — built for long-term maintainability.
 
 ## Installation / Quickstart
 
