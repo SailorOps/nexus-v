@@ -69,7 +69,7 @@ brews:
       name: homebrew-nexusv
     directory: Formula
     homepage: "https://github.com/stillsystems/nexus-v"
-    description: "A modern, zero-install VS Code extension scaffolder."
+    description: "A modern VS Code extension scaffolder with zero runtime dependencies."
     license: "MIT"
     ids:
       - archive
@@ -82,7 +82,7 @@ scoops:
       owner: stillsystems
       name: scoop-bucket
     homepage: "https://github.com/stillsystems/nexus-v"
-    description: "A modern, zero-install VS Code extension scaffolder."
+    description: "A modern VS Code extension scaffolder with zero runtime dependencies."
     license: "MIT"
     ids:
       - archive
@@ -91,7 +91,7 @@ winget:
   - name: nexus-v
     publisher: Still Systems
     package_identifier: stillsystems.nexusv
-    short_description: "A modern, zero-install VS Code extension scaffolder."
+    short_description: "A modern VS Code extension scaffolder with zero runtime dependencies."
     description: "NEXUS-V replaces the legacy Yeoman generator with a single static binary that produces clean VS Code extension projects."
     license: MIT
     homepage: "https://github.com/stillsystems/nexus-v"
