@@ -1,14 +1,14 @@
-# SailorOps Design System
+# Still Systems Design System
 
-The SailorOps Design System defines how the organization looks, sounds, and behaves across all tools, repos, and communication surfaces.
+The Still Systems Design System defines how the organization looks, sounds, and behaves across all tools, repos, and communication surfaces.
 
 ## 1. Brand Foundations
 ### Brand Pillars
-- Zero‑install tooling  
+- Zero runtime dependencies
 - Operational clarity  
 - Minimal dependencies  
 - Technical precision  
-- Real‑world reliability  
+- Real‑world reliability
 
 ### Brand Personality
 Confident, technical, minimalist, direct, reliable, modern.
@@ -21,11 +21,11 @@ Tools engineered for real‑world conditions.
 ## 2. Visual Identity
 
 ### Logo System
-- Primary: Anchor + compass + circuitry  
-- Secondary: Simplified compass or anchor  
-- Micro: Minimal compass for small sizes  
+- Primary: Three-bar Foundation Stack
+- Secondary: Simplified brick or bar
+- Micro: Minimal bar for small sizes
 
-Clear space: equal to anchor shank height.  
+Clear space: equal to bar height.  
 Never distort, recolor, or add shadows.
 
 ### Color Palette
@@ -35,7 +35,7 @@ See `colors/palette.md`.
 See `typography/typography.md`.
 
 ### Iconography
-Thin‑line, nautical‑tech hybrid, 2–2.5px stroke, rounded corners.
+Thin‑line, structural-tech hybrid, 2–2.5px stroke, rounded corners.
 
 ### Illustration Style
 Blueprint‑tech aesthetic: radar arcs, circuitry, waveforms, binary overlays.
@@ -67,4 +67,4 @@ See `cli-style/cli-formatting.md`.
 ## 6. Governance
 See `governance/versioning.md`.
 
-This document evolves as SailorOps grows.
+This document evolves as Still Systems grows.
