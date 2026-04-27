@@ -74,6 +74,10 @@ Please refer to our [Global Contributing Guidelines](https://github.com/stillsys
 
 This project is licensed under the MIT License.
 
+## Roadmap
+
+We are committed to the long-term stability of the Still Systems ecosystem. See our [Roadmap](ROADMAP.md) for planned features and architectural goals.
+
 Documentation • [Issues](https://github.com/stillsystems/nexus-v/issues) • [Support](https://github.com/stillsystems/.github/blob/main/SUPPORT.md)
 
 ---
